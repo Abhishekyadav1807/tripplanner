@@ -14,7 +14,7 @@ const Navbar = ({ user, onLogout }) => {
 
   const isActive = (path) => location.pathname === path;
 
-  if (!user) return null; // Don't show navbar if not logged in
+  if (!user) return null; 
 
   const navItems = [
     { label: 'Dashboard', path: '/' },
@@ -25,12 +25,12 @@ const Navbar = ({ user, onLogout }) => {
   return (
     <nav className="glass-panel" style={{ borderRadius: '0 0 var(--radius-md) var(--radius-md)', borderTop: 'none', position: 'sticky', top: 0, zIndex: 100, marginBottom: '2rem' }}>
       <div className="container" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', height: '70px' }}>
-        {/* Logo */}
+        {}
         <Link to="/" style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', fontWeight: 800, fontSize: '1.25rem', fontFamily: 'var(--font-display)', background: 'var(--gradient-primary)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>
           <span>Trip Itinerary AI</span>
         </Link>
 
-        {/* Desktop Navigation */}
+        {}
         <div className="desktop-menu" style={{ display: 'flex', alignItems: 'center', gap: '2rem' }}>
           {navItems.map((item) => (
             <Link
@@ -54,7 +54,7 @@ const Navbar = ({ user, onLogout }) => {
           </button>
         </div>
 
-        {/* Mobile menu button */}
+        {}
         <button
           className="mobile-toggle"
           onClick={() => setIsOpen(!isOpen)}
@@ -64,7 +64,7 @@ const Navbar = ({ user, onLogout }) => {
         </button>
       </div>
 
-      {/* Mobile Menu Panel */}
+      {}
       {isOpen && (
         <div className="mobile-menu" style={{ borderTop: '1px solid var(--border-color)', padding: '1rem 1.5rem', display: 'flex', flexDirection: 'column', gap: '1rem', background: 'var(--bg-card)' }}>
           {navItems.map((item) => (
@@ -88,7 +88,7 @@ const Navbar = ({ user, onLogout }) => {
         </div>
       )}
 
-      {/* Embedded style for desktop/mobile toggle hide/show */}
+      {}
       <style>{`
         @media (max-width: 768px) {
           .desktop-menu {

@@ -42,7 +42,7 @@ const Register = ({ onLoginSuccess }) => {
   return (
     <div style={{ display: 'flex', minHeight: 'calc(100vh - 40px)', alignItems: 'center', justifyContent: 'center', padding: '1.5rem' }}>
       <div className="glass-panel animate-fade-in" style={{ width: '100%', maxWidth: '420px', padding: '2.5rem' }}>
-        {/* Brand Header */}
+        {}
         <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', marginBottom: '2rem', textAlign: 'center' }}>
           <h2 style={{ fontSize: '1.75rem', fontFamily: 'var(--font-display)', fontWeight: 800, marginBottom: '0.25rem' }}>Create Account</h2>
           <p style={{ color: 'var(--text-secondary)', fontSize: '0.9rem' }}>Join now to start planning intelligent trips</p>
@@ -56,7 +56,7 @@ const Register = ({ onLoginSuccess }) => {
         )}
 
         <form onSubmit={handleSubmit}>
-          {/* Username Input */}
+          {}
           <div className="form-group">
             <label className="form-label">Username</label>
             <input
@@ -120,7 +120,7 @@ const Register = ({ onLoginSuccess }) => {
         </form>
 
 
-        {/* Login link */}
+        {}
         <div style={{ textAlign: 'center', fontSize: '0.9rem', color: 'var(--text-secondary)' }}>
           Already have an account?{' '}
           <Link to="/login" style={{ color: 'var(--primary)', fontWeight: 600 }}>

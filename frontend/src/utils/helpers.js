@@ -1,6 +1,4 @@
-/**
- * Formats a Date object or ISO date string to a clean YYYY-MM-DD
- */
+
 export const formatDateString = (dateInput) => {
   if (!dateInput) return '';
   const d = new Date(dateInput);
@@ -12,9 +10,7 @@ export const formatDateString = (dateInput) => {
   return [year, month.padStart(2, '0'), day.padStart(2, '0')].join('-');
 };
 
-/**
- * Formats a date to a reader-friendly display: "Oct 12, 2026"
- */
+
 export const displayDate = (dateInput) => {
   if (!dateInput) return '';
   const d = new Date(dateInput);
@@ -26,9 +22,7 @@ export const displayDate = (dateInput) => {
   });
 };
 
-/**
- * Formats date and time: "Oct 12, 2026 at 4:30 PM"
- */
+
 export const displayDateTime = (dateInput) => {
   if (!dateInput) return '';
   const d = new Date(dateInput);
@@ -43,9 +37,7 @@ export const displayDateTime = (dateInput) => {
   });
 };
 
-/**
- * Capitalizes first letter of a string
- */
+
 export const capitalize = (str) => {
   if (!str) return '';
   return str.charAt(0).toUpperCase() + str.slice(1);

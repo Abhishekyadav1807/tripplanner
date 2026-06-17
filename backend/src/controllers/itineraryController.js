@@ -1,11 +1,7 @@
 const Itinerary = require('../models/Itinerary');
 const geminiService = require('../services/geminiService');
 
-/**
- * @desc    Upload booking document & extract details
- * @route   POST /api/itineraries/upload
- * @access  Private
- */
+
 const uploadBookingDocument = async (req, res) => {
   try {
     if (!req.file) {
@@ -30,11 +26,7 @@ const uploadBookingDocument = async (req, res) => {
   }
 };
 
-/**
- * @desc    Generate and save a new itinerary
- * @route   POST /api/itineraries/generate
- * @access  Private
- */
+
 const generateNewItinerary = async (req, res) => {
   try {
     const { title, destination, startDate, endDate, bookings } = req.body;
@@ -43,7 +35,7 @@ const generateNewItinerary = async (req, res) => {
       return res.status(400).json({ success: false, message: 'Please provide destination, start date and end date' });
     }
 
-    // Call Gemini Service to generate full day-by-day activities
+    
     const generatedData = await geminiService.generateItinerary(
       bookings || [],
       destination,
@@ -51,7 +43,7 @@ const generateNewItinerary = async (req, res) => {
       endDate
     );
 
-    // Save itinerary to database
+    
     const newItinerary = new Itinerary({
       title: title || generatedData.title || `Trip to ${destination}`,
       destination: destination,
@@ -76,11 +68,7 @@ const generateNewItinerary = async (req, res) => {
   }
 };
 
-/**
- * @desc    Get all itineraries for logged-in user
- * @route   GET /api/itineraries
- * @access  Private
- */
+
 const getUserItineraries = async (req, res) => {
   try {
     const itineraries = await Itinerary.find({ owner: req.user._id }).sort({ createdAt: -1 });
@@ -95,11 +83,7 @@ const getUserItineraries = async (req, res) => {
   }
 };
 
-/**
- * @desc    Get itinerary details by ID
- * @route   GET /api/itineraries/:id
- * @access  Private
- */
+
 const getItineraryById = async (req, res) => {
   try {
     const itinerary = await Itinerary.findById(req.params.id);
@@ -108,7 +92,7 @@ const getItineraryById = async (req, res) => {
       return res.status(404).json({ success: false, message: 'Itinerary not found' });
     }
 
-    // Check ownership
+    
     if (itinerary.owner.toString() !== req.user._id.toString()) {
       return res.status(403).json({ success: false, message: 'Not authorized to view this itinerary' });
     }
@@ -123,11 +107,7 @@ const getItineraryById = async (req, res) => {
   }
 };
 
-/**
- * @desc    Update an itinerary
- * @route   PUT /api/itineraries/:id
- * @access  Private
- */
+
 const updateItinerary = async (req, res) => {
   try {
     let itinerary = await Itinerary.findById(req.params.id);
@@ -136,12 +116,12 @@ const updateItinerary = async (req, res) => {
       return res.status(404).json({ success: false, message: 'Itinerary not found' });
     }
 
-    // Check ownership
+    
     if (itinerary.owner.toString() !== req.user._id.toString()) {
       return res.status(403).json({ success: false, message: 'Not authorized to update this itinerary' });
     }
 
-    // Update fields
+    
     const { title, destination, startDate, endDate, days, bookings, isPublic } = req.body;
     
     if (title !== undefined) itinerary.title = title;
@@ -165,11 +145,7 @@ const updateItinerary = async (req, res) => {
   }
 };
 
-/**
- * @desc    Delete an itinerary
- * @route   DELETE /api/itineraries/:id
- * @access  Private
- */
+
 const deleteItinerary = async (req, res) => {
   try {
     const itinerary = await Itinerary.findById(req.params.id);
@@ -178,7 +154,7 @@ const deleteItinerary = async (req, res) => {
       return res.status(404).json({ success: false, message: 'Itinerary not found' });
     }
 
-    // Check ownership
+    
     if (itinerary.owner.toString() !== req.user._id.toString()) {
       return res.status(403).json({ success: false, message: 'Not authorized to delete this itinerary' });
     }
@@ -195,11 +171,7 @@ const deleteItinerary = async (req, res) => {
   }
 };
 
-/**
- * @desc    Toggle itinerary sharing status
- * @route   POST /api/itineraries/:id/share
- * @access  Private
- */
+
 const toggleShareItinerary = async (req, res) => {
   try {
     const itinerary = await Itinerary.findById(req.params.id);
@@ -208,7 +180,7 @@ const toggleShareItinerary = async (req, res) => {
       return res.status(404).json({ success: false, message: 'Itinerary not found' });
     }
 
-    // Check ownership
+    
     if (itinerary.owner.toString() !== req.user._id.toString()) {
       return res.status(403).json({ success: false, message: 'Not authorized to configure sharing' });
     }
@@ -230,11 +202,7 @@ const toggleShareItinerary = async (req, res) => {
   }
 };
 
-/**
- * @desc    Get shared itinerary by share ID
- * @route   GET /api/itineraries/public/:shareId
- * @access  Public
- */
+
 const getPublicItineraryByShareId = async (req, res) => {
   try {
     const itinerary = await Itinerary.findOne({ shareId: req.params.shareId });
@@ -243,7 +211,7 @@ const getPublicItineraryByShareId = async (req, res) => {
       return res.status(404).json({ success: false, message: 'Itinerary not found' });
     }
 
-    // Check if it is indeed public
+    
     if (!itinerary.isPublic) {
       return res.status(403).json({ success: false, message: 'This itinerary is private' });
     }

@@ -4,7 +4,7 @@
   --font-primary: 'Inter', sans-serif;
   --font-display: 'Outfit', sans-serif;
 
-  /* Color Palette */
+  
   --bg-main: #0b0f19;
   --bg-card: #131b2e;
   --bg-card-hover: #1c2742;
@@ -47,7 +47,7 @@
   --transition-slow: 0.5s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* Base resets */
+
 * {
   margin: 0;
   padding: 0;
@@ -82,7 +82,7 @@ button, input, textarea, select {
   outline: none;
 }
 
-/* Custom Scrollbar */
+
 ::-webkit-scrollbar {
   width: 8px;
   height: 8px;
@@ -98,7 +98,7 @@ button, input, textarea, select {
   background: var(--text-muted);
 }
 
-/* Glassmorphism Styles */
+
 .glass-panel {
   background: var(--gradient-card);
   border: 1px solid var(--border-color);
@@ -115,7 +115,7 @@ button, input, textarea, select {
   transform: translateY(-2px);
 }
 
-/* Animations */
+
 @keyframes fadeIn {
   from { opacity: 0; transform: translateY(12px); }
   to { opacity: 1; transform: translateY(0); }
@@ -155,7 +155,7 @@ button, input, textarea, select {
   border-width: 4px;
 }
 
-/* Layout Utilities */
+
 .container {
   width: 100%;
   max-width: 1200px;
@@ -163,7 +163,7 @@ button, input, textarea, select {
   padding: 0 1.5rem;
 }
 
-/* Form Styles */
+
 .form-group {
   margin-bottom: 1.25rem;
 }
@@ -195,7 +195,7 @@ button, input, textarea, select {
   box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.15);
 }
 
-/* Button Styles */
+
 .btn {
   display: inline-flex;
   align-items: center;
@@ -252,7 +252,7 @@ button, input, textarea, select {
   box-shadow: none !important;
 }
 
-/* Alert Messages */
+
 .alert {
   padding: 1rem;
   border-radius: var(--radius-sm);
@@ -281,7 +281,7 @@ button, input, textarea, select {
   color: #818cf8;
 }
 
-/* Timeline Layout */
+
 .timeline-container {
   position: relative;
   padding-left: 2rem;
@@ -329,7 +329,7 @@ button, input, textarea, select {
   padding: 1.25rem;
 }
 
-/* Responsive navigation navbar styling */
+
 .nav-link {
   position: relative;
   padding: 0.5rem 0.25rem;

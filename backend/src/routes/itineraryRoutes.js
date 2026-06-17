@@ -13,10 +13,10 @@ const {
 const { protect } = require('../middleware/authMiddleware');
 const upload = require('../middleware/uploadMiddleware');
 
-// Public route for shared itineraries
+
 router.get('/public/:shareId', getPublicItineraryByShareId);
 
-// Protected routes (JWT required)
+
 router.use(protect);
 
 router.post('/upload', upload.single('file'), uploadBookingDocument);

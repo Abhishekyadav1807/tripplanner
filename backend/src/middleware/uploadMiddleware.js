@@ -1,9 +1,9 @@
 const multer = require('multer');
 
-// Configure memory storage
+
 const storage = multer.memoryStorage();
 
-// File filter for travel booking docs (PDF and Images)
+
 const fileFilter = (req, file, cb) => {
   const allowedMimeTypes = [
     'application/pdf',
@@ -19,12 +19,12 @@ const fileFilter = (req, file, cb) => {
   }
 };
 
-// Multer upload configurations (limits: 10MB)
+
 const upload = multer({
   storage: storage,
   fileFilter: fileFilter,
   limits: {
-    fileSize: 10 * 1024 * 1024, // 10MB limit
+    fileSize: 10 * 1024 * 1024, 
   },
 });
 

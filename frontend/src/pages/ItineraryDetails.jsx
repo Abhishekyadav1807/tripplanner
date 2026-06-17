@@ -12,15 +12,15 @@ const ItineraryDetails = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
   
-  // Metadata edit states
+  
   const [isEditingMeta, setIsEditingMeta] = useState(false);
   const [editForm, setEditForm] = useState({ title: '', destination: '', startDate: '', endDate: '' });
 
-  // Share Modal states
+  
   const [showShareModal, setShowShareModal] = useState(false);
   const [copied, setCopied] = useState(false);
 
-  // Bookings Accordion states
+  
   const [showBookings, setShowBookings] = useState(false);
 
   const fetchItinerary = async () => {
@@ -45,7 +45,7 @@ const ItineraryDetails = () => {
     fetchItinerary();
   }, [id]);
 
-  // Update Itinerary metadata
+  
   const handleSaveMeta = async (e) => {
     e.preventDefault();
     try {
@@ -58,19 +58,19 @@ const ItineraryDetails = () => {
     }
   };
 
-  // Update day activities
+  
   const handleDaysUpdate = async (updatedDays) => {
     try {
-      // Optimistically update state
+      
       setItinerary(prev => ({ ...prev, days: updatedDays }));
       await api.itinerary.update(id, { days: updatedDays });
     } catch (err) {
       setError('Failed to save activity updates. Reverting changes...');
-      fetchItinerary(); // reload from server
+      fetchItinerary(); 
     }
   };
 
-  // Delete Trip
+  
   const handleDeleteTrip = async () => {
     if (window.confirm('Delete this trip permanently?')) {
       try {
@@ -82,7 +82,7 @@ const ItineraryDetails = () => {
     }
   };
 
-  // Share config toggle
+  
   const handleToggleShare = async () => {
     try {
       const res = await api.itinerary.toggleShare(id);

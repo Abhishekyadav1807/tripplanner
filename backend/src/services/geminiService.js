@@ -1,12 +1,10 @@
 const { GoogleGenerativeAI } = require('@google/generative-ai');
 const pdfParse = require('pdf-parse');
 
-// Initialize Gemini API
+
 const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY || 'dummy_key');
 
-/**
- * Helper to format file buffer into Gemini inline data part
- */
+
 const fileToGenerativePart = (buffer, mimeType) => {
   return {
     inlineData: {
@@ -16,9 +14,7 @@ const fileToGenerativePart = (buffer, mimeType) => {
   };
 };
 
-/**
- * Extracts booking details from a document (PDF or Image)
- */
+
 const extractBookingDetails = async (fileBuffer, mimeType, fileName) => {
   try {
     if (!process.env.GEMINI_API_KEY) {
@@ -28,7 +24,7 @@ const extractBookingDetails = async (fileBuffer, mimeType, fileName) => {
     let extractedText = '';
     let parsedData = null;
 
-    // Use gemini-1.5-flash for processing
+    
     const model = genAI.getGenerativeModel({
       model: 'gemini-1.5-flash',
       generationConfig: { responseMimeType: 'application/json' }
@@ -53,7 +49,7 @@ Return ONLY a JSON object matching this structure:
 
     if (mimeType === 'application/pdf') {
       try {
-        // Try parsing PDF text locally first (very token-efficient and fast)
+        
         const pdfData = await pdfParse(fileBuffer);
         extractedText = pdfData.text || '';
       } catch (err) {
@@ -61,7 +57,7 @@ Return ONLY a JSON object matching this structure:
       }
 
       if (extractedText.trim().length > 50) {
-        // We got text, send it to Gemini
+        
         const result = await model.generateContent([
           prompt,
           `Document Source Name: ${fileName}\n\nDocument Text Content:\n${extractedText}`
@@ -70,14 +66,14 @@ Return ONLY a JSON object matching this structure:
         const responseText = result.response.text();
         parsedData = JSON.parse(responseText);
       } else {
-        // Low or no text (scanned PDF), send the buffer directly to Gemini
+        
         const pdfPart = fileToGenerativePart(fileBuffer, mimeType);
         const result = await model.generateContent([prompt, pdfPart]);
         const responseText = result.response.text();
         parsedData = JSON.parse(responseText);
       }
     } else {
-      // It is an image (jpeg, png, webp)
+      
       const imagePart = fileToGenerativePart(fileBuffer, mimeType);
       const result = await model.generateContent([prompt, imagePart]);
       const responseText = result.response.text();
@@ -89,7 +85,7 @@ Return ONLY a JSON object matching this structure:
       details: parsedData.details || {},
       summary: parsedData.summary || `Parsed document ${fileName}`,
       fileName,
-      extractedText: extractedText.substring(0, 1000) // store snippet of text for debugging/history
+      extractedText: extractedText.substring(0, 1000) 
     };
   } catch (error) {
     console.error('Error in extractBookingDetails service:', error);
@@ -111,9 +107,7 @@ Return ONLY a JSON object matching this structure:
   }
 };
 
-/**
- * Generates a full structured travel itinerary based on parsed bookings, destination, and dates
- */
+
 const generateItinerary = async (bookings, destination, startDate, endDate) => {
   try {
     if (!process.env.GEMINI_API_KEY) {

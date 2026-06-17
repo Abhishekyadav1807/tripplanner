@@ -1,8 +1,6 @@
 const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000/api';
 
-/**
- * Core fetch wrapper that injects authentication token and handles responses
- */
+
 const request = async (endpoint, options = {}) => {
   const token = localStorage.getItem('trip_token');
   
@@ -10,7 +8,7 @@ const request = async (endpoint, options = {}) => {
     ...options.headers,
   };
 
-  // Do not set Content-Type for FormData (multer upload) as the browser will auto-set boundary
+  
   if (!(options.body instanceof FormData)) {
     headers['Content-Type'] = 'application/json';
   }
@@ -29,11 +27,11 @@ const request = async (endpoint, options = {}) => {
     const data = await response.json();
 
     if (!response.ok) {
-      // If unauthorized, clear token
+      
       if (response.status === 401) {
         localStorage.removeItem('trip_token');
         localStorage.removeItem('trip_user');
-        // Optionally redirect to login, but let the app handle it via state
+        
       }
       throw new Error(data.message || 'Something went wrong');
     }
@@ -46,7 +44,7 @@ const request = async (endpoint, options = {}) => {
 };
 
 const api = {
-  // Auth endpoints
+  
   auth: {
     register: (username, email, password) => 
       request('/auth/register', {
@@ -61,7 +59,7 @@ const api = {
     getMe: () => request('/auth/me'),
   },
 
-  // Itinerary endpoints
+  
   itinerary: {
     upload: (file) => {
       const formData = new FormData();

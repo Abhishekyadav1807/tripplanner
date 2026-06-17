@@ -4,7 +4,7 @@ import { displayDate } from '../utils/helpers';
 
 const Timeline = ({ days, isEditable = false, onDaysUpdate }) => {
   const [expandedDays, setExpandedDays] = useState({ 1: true });
-  const [editingActivity, setEditingActivity] = useState(null); // { dayIdx, actIdx }
+  const [editingActivity, setEditingActivity] = useState(null); 
   const [editForm, setEditForm] = useState({ time: '', activity: '', location: '', notes: '' });
 
   const toggleDay = (dayNum) => {
@@ -59,7 +59,7 @@ const Timeline = ({ days, isEditable = false, onDaysUpdate }) => {
     };
     updatedDays[dayIdx].activities.push(newAct);
     onDaysUpdate(updatedDays);
-    // Open editor for it immediately
+    
     startEdit(dayIdx, updatedDays[dayIdx].activities.length - 1, newAct);
   };
 
@@ -69,7 +69,7 @@ const Timeline = ({ days, isEditable = false, onDaysUpdate }) => {
         const isExpanded = !!expandedDays[day.dayNumber];
         return (
           <div key={day.dayNumber} className="glass-panel" style={{ overflow: 'hidden' }}>
-            {/* Day Header Accordion Toggle */}
+            {}
             <div
               onClick={() => toggleDay(day.dayNumber)}
               style={{
@@ -118,7 +118,7 @@ const Timeline = ({ days, isEditable = false, onDaysUpdate }) => {
               </div>
             </div>
 
-            {/* Day Activities List */}
+            {}
             {isExpanded && (
               <div style={{ padding: '1.5rem' }}>
                 {day.activities.length === 0 ? (
@@ -135,7 +135,7 @@ const Timeline = ({ days, isEditable = false, onDaysUpdate }) => {
                           <div className="timeline-badge" />
                           <div className="timeline-content glass-panel" style={{ background: 'rgba(255, 255, 255, 0.02)' }}>
                             {isEditing ? (
-                              /* Inline Edit Form */
+                              
                               <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
                                 <div style={{ display: 'grid', gridTemplateColumns: '1fr 2fr', gap: '0.75rem' }}>
                                   <div>

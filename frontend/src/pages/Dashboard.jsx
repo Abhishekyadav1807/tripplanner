@@ -23,11 +23,11 @@ const Dashboard = ({ user }) => {
     fetchItineraries();
   }, []);
 
-  // Compute metrics
+  
   const totalTrips = itineraries.length;
   const totalBookings = itineraries.reduce((sum, item) => sum + (item.bookings?.length || 0), 0);
   
-  // Find next upcoming trip
+  
   const upcomingTrip = itineraries
     .filter(item => new Date(item.startDate) >= new Date().setHours(0,0,0,0))
     .sort((a, b) => new Date(a.startDate) - new Date(b.startDate))[0];
@@ -36,7 +36,7 @@ const Dashboard = ({ user }) => {
 
   return (
     <div className="container animate-fade-in" style={{ paddingBottom: '3rem' }}>
-      {/* Welcome Header */}
+      {}
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '1rem', marginBottom: '2rem' }}>
         <div>
           <h1 style={{ fontSize: '2.25rem', fontWeight: 800, fontFamily: 'var(--font-display)', marginBottom: '0.25rem' }}>

@@ -58,7 +58,7 @@ const SharedItinerary = () => {
     <div style={{ minHeight: '100vh', background: 'var(--bg-main)', color: 'var(--text-main)', padding: '2rem 1rem 5rem 1rem' }}>
       <div className="container" style={{ maxWidth: '800px' }}>
         
-        {/* Brand Banner */}
+        {}
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', borderBottom: '1px solid var(--border-color)', paddingBottom: '1.25rem', marginBottom: '2.5rem' }}>
           <div style={{ fontWeight: 800, fontSize: '1.1rem', fontFamily: 'var(--font-display)', background: 'var(--gradient-primary)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>
             <span>Trip Itinerary AI</span>
@@ -68,7 +68,7 @@ const SharedItinerary = () => {
           </Link>
         </div>
 
-        {/* Header Display */}
+        {}
         <div className="glass-panel animate-fade-in" style={{ padding: '2rem', marginBottom: '2rem' }}>
           <div style={{ color: 'var(--primary)', fontSize: '0.85rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: '0.5rem' }}>
             <span>{itinerary.destination}</span>

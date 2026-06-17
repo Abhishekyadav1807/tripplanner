@@ -32,7 +32,7 @@ const Login = ({ onLoginSuccess }) => {
   return (
     <div style={{ display: 'flex', minHeight: 'calc(100vh - 40px)', alignItems: 'center', justifyContent: 'center', padding: '1.5rem' }}>
       <div className="glass-panel animate-fade-in" style={{ width: '100%', maxWidth: '400px', padding: '2.5rem' }}>
-        {/* Brand Header */}
+        {}
         <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', marginBottom: '2rem', textAlign: 'center' }}>
           <h2 style={{ fontSize: '1.75rem', fontFamily: 'var(--font-display)', fontWeight: 800, marginBottom: '0.25rem' }}>Welcome Back</h2>
           <p style={{ color: 'var(--text-secondary)', fontSize: '0.9rem' }}>Sign in to plan your next adventure</p>
@@ -46,7 +46,7 @@ const Login = ({ onLoginSuccess }) => {
         )}
 
         <form onSubmit={handleSubmit}>
-          {/* Email input */}
+          {}
           <div className="form-group">
             <label className="form-label">Email Address</label>
             <input
@@ -84,7 +84,7 @@ const Login = ({ onLoginSuccess }) => {
         </form>
 
 
-        {/* Register link */}
+        {}
         <div style={{ textAlign: 'center', fontSize: '0.9rem', color: 'var(--text-secondary)' }}>
           Don't have an account?{' '}
           <Link to="/register" style={{ color: 'var(--primary)', fontWeight: 600 }}>

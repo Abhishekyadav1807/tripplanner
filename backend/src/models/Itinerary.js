@@ -69,7 +69,7 @@ const itinerarySchema = new mongoose.Schema(
   }
 );
 
-// Pre-save hook to generate unique shareId
+
 itinerarySchema.pre('save', function (next) {
   if (!this.shareId) {
     this.shareId = crypto.randomBytes(8).toString('hex');

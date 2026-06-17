@@ -16,7 +16,7 @@ function App() {
   const [authChecking, setAuthChecking] = useState(true);
 
   useEffect(() => {
-    // Check if token and user exist in storage
+    
     const storedUser = localStorage.getItem('trip_user');
     const token = localStorage.getItem('trip_token');
     
@@ -24,7 +24,7 @@ function App() {
       try {
         setUser(JSON.parse(storedUser));
         
-        // Optionally verify token with backend in background
+        
         api.auth.getMe()
           .then(res => {
             if (res.success) {
@@ -34,8 +34,8 @@ function App() {
             }
           })
           .catch(() => {
-            // If API check fails, token might be expired.
-            // Clear storage and state.
+            
+            
             handleLogout();
           });
       } catch (err) {
@@ -69,7 +69,7 @@ function App() {
   return (
     <Router>
       <div style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh', background: 'var(--bg-main)' }}>
-        {/* Navbar only shows when user is authenticated */}
+        {}
         <Navbar user={user} onLogout={handleLogout} />
         
         <main style={{ flex: 1 }}>
@@ -84,7 +84,7 @@ function App() {
               element={user ? <Navigate to="/" replace /> : <Register onLoginSuccess={handleLoginSuccess} />} 
             />
 
-            {/* Public Read-Only Share Route */}
+            {}
             <Route path="/shared/:shareId" element={<SharedItinerary />} />
 
             {/* Protected Core Routes */}
@@ -121,7 +121,7 @@ function App() {
               } 
             />
 
-            {/* Catch-all Redirect */}
+            {}
             <Route path="*" element={<Navigate to="/" replace />} />
           </Routes>
         </main>

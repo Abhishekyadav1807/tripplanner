@@ -11,19 +11,19 @@ const Upload = () => {
   const [genStep, setGenStep] = useState(0);
   const [error, setError] = useState('');
   
-  // Trip details form states
+  
   const [title, setTitle] = useState('');
   const [destination, setDestination] = useState('');
   const [startDate, setStartDate] = useState('');
   const [endDate, setEndDate] = useState('');
   
-  // Bookings list
+  
   const [bookings, setBookings] = useState([]);
   
   const fileInputRef = useRef(null);
   const navigate = useNavigate();
 
-  // Loading steps text
+  
   const loadingSteps = [
     'Reading travel booking details...',
     'Consulting Gemini AI to outline the schedule...',
@@ -32,7 +32,7 @@ const Upload = () => {
     'Polishing your finalized travel experience...'
   ];
 
-  // Drag and drop handlers
+  
   const handleDrag = (e) => {
     e.preventDefault();
     e.stopPropagation();
@@ -58,7 +58,7 @@ const Upload = () => {
     }
   };
 
-  // Upload file and parse details
+  
   const uploadFile = async (file) => {
     try {
       setError('');
@@ -68,21 +68,21 @@ const Upload = () => {
       const parsedData = res.data;
       setBookings(prev => [...prev, parsedData]);
       
-      // Auto-fill form fields based on first parsed booking if empty
+      
       if (parsedData.details) {
         const details = parsedData.details;
         
-        // Auto-fill Destination
+        
         if (!destination) {
           if (details.arrivalAirport || details.arrivalStation) {
             setDestination(details.arrivalAirport || details.arrivalStation);
           } else if (details.hotelName && details.address) {
-            // parse city from address or use hotel city
+            
             setDestination(details.address);
           }
         }
 
-        // Auto-fill Dates
+        
         if (parsedData.type === 'flight' && details.departureTime && !startDate) {
           setStartDate(formatDateString(details.departureTime));
         } else if (parsedData.type === 'hotel' && details.checkInDate && !startDate) {
@@ -99,12 +99,12 @@ const Upload = () => {
     }
   };
 
-  // Remove booking from list
+  
   const removeBooking = (idx) => {
     setBookings(prev => prev.filter((_, i) => i !== idx));
   };
 
-  // Manual booking editing helper (simple placeholder since details can be mixed)
+  
   const [editingIndex, setEditingIndex] = useState(null);
   const [editDetailsSummary, setEditDetailsSummary] = useState('');
 
@@ -120,7 +120,7 @@ const Upload = () => {
     setEditingIndex(null);
   };
 
-  // Run AI Itinerary Generation
+  
   const handleGenerate = async (e) => {
     e.preventDefault();
     if (!destination || !startDate || !endDate) {
@@ -131,7 +131,7 @@ const Upload = () => {
       setError('');
       setGenerating(true);
       
-      // Setup step switching interval for visual effect
+      
       setGenStep(0);
       const interval = setInterval(() => {
         setGenStep(prev => (prev < loadingSteps.length - 1 ? prev + 1 : prev));
@@ -171,7 +171,7 @@ const Upload = () => {
   return (
     <div className="container animate-fade-in" style={{ paddingBottom: '4rem', position: 'relative' }}>
       
-      {/* AI Generating Overlay */}
+      {}
       {generating && (
         <div style={{
           position: 'fixed',
@@ -188,7 +188,7 @@ const Upload = () => {
           padding: '2rem',
           textAlign: 'center'
         }}>
-          {/* Spinning Glow Loading Rings */}
+          {}
           <div style={{
             width: '80px',
             height: '80px',
@@ -224,7 +224,7 @@ const Upload = () => {
 
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '2rem' }}>
         
-        {/* Left Side: Upload Documents */}
+        {}
         <div>
           <h2 style={{ fontSize: '1.25rem', fontWeight: 700, marginBottom: '1rem' }}>1. Upload Tickets & Bookings</h2>
           
