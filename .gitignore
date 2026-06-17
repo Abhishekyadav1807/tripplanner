@@ -1,0 +1,31 @@
+# Node dependencies
+node_modules/
+
+# Local env files
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Build outputs
+dist/
+build/
+out/
+
+# System / IDE files
+.DS_Store
+.idea/
+.vscode/
+*.log
+.system_generated/
+browser_recordings/
+html_artifacts/
+mcp_config.json
+mcp/
+skills/
+conversations/
+brain/
+worktrees/
+*.webp
+mock_flight_ticket.png
